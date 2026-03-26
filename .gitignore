@@ -1,0 +1,3 @@
+# Ignore local configuration files with sensitive data
+cypress/config/local.json
+.env
