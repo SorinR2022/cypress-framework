@@ -9,15 +9,24 @@ A scalable, environment-aware E2E automation suite for SauceDemo and ReqRes API.
     ```sh
     npm install
     ```
-2. **Configure credentials:**
-    Ensure `cypress/config/local.json` contains your test data:
-    ```json
-    {
-      "baseUrl": "https://www.saucedemo.com",
-      "username": "standard_user",
-      "password": "secret_sauce"
-    }
-    ```
+
+2. **Create your local configuration:**
+    > **Note:** The file `cypress/config/local.json` is **not included** in this repository for security reasons. You must create it manually before running tests.
+
+        **Steps to create `local.json`:**
+        1. In your project, navigate to the `cypress/config/` directory.
+        2. Create a new file named `local.json`.
+        3. Add the following content, updating the values as needed:
+                ```json
+                {
+                    "baseUrl": "https://www.saucedemo.com",
+                    "username": "standard_user",
+                    "password": "secret_sauce",
+                    "reqresApiKey": "<your_reqres_api_key_here>"
+                }
+                ```
+        - The `reqresApiKey` field is required for API tests using ReqRes. Replace `<your_reqres_api_key_here>` with your actual API key.
+
 3. **Run tests:**
     - Headless mode: `npm run cy:run`
     - Interactive mode: `npm run cy:open`
@@ -45,13 +54,14 @@ On every Pull Request, execute a Smoke Suite (critical path tests like login, ad
 
 ## Security & Secrets Management
 
-For this technical assessment, the ReqRes API Key is included in the test files/config to ensure the suite is "plug-and-play" for the reviewer.
 
-In a production environment:
+**For this technical assessment:**
+- The ReqRes API Key must be provided in your `cypress/config/local.json` file (see Quick Start above) to ensure the suite is plug-and-play for the reviewer. This allows API tests to run locally without additional setup.
 
-- API keys and secrets would never be committed to version control.
-- Secrets would be injected via CI/CD Environment Variables (e.g., GitHub Secrets or AWS Secrets Manager).
-- Local development would utilize a .env file (excluded via .gitignore) to prevent accidental exposure of sensitive credentials.
+**In a production environment:**
+- API keys and secrets (including `reqresApiKey`) must never be committed to version control or hardcoded in config files.
+- Secrets should be injected at runtime via CI/CD environment variables (e.g., GitHub Secrets, AWS Secrets Manager) or a secure secrets management solution.
+- All sensitive values should be managed securely and never exposed in the repository or logs.
 
 
 
