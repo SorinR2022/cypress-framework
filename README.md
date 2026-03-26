@@ -58,10 +58,4 @@ On every Pull Request, execute a Smoke Suite (critical path tests like login, ad
 **For this technical assessment:**
 - The ReqRes API Key must be provided in your `cypress/config/local.json` file (see Quick Start above) to ensure the suite is plug-and-play for the reviewer. This allows API tests to run locally without additional setup.
 
-**In a production environment:**
-- API keys and secrets (including `reqresApiKey`) must never be committed to version control or hardcoded in config files.
-- Secrets should be injected at runtime via CI/CD environment variables (e.g., GitHub Secrets, AWS Secrets Manager) or a secure secrets management solution.
-- All sensitive values should be managed securely and never exposed in the repository or logs.
-
-
 
